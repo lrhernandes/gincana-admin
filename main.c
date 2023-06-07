@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include<conio.h>
+#include <string.h>
 
 void cleanTerminal();
 void throwMessage();
@@ -15,24 +15,43 @@ int main(){
 	
 	struct TEAM teams[5];
 	struct TEAM * t;
-	int index = 0;
+	int index = 0, contName = 0;
 	bool showMenu = true;
+
+	char name[50];
+	bool readName = true;
 	
 	t = teams;
 	
 	do{
-		printf("1 - Inserir Nome Equipe\n");
-		printf("2 - Inserir Nota Equipe\n");
-		printf("3 - Calcular Pontuacao Equipe\n");
-		printf("4 - Salvar arquivo\n");
+		printf("1 - INSERIR NOME DA EQUIPE\n");
+		printf("2 - INSERIR NOTA DA EQUIPE\n");
+		printf("3 - CALCULAR PONTUACAO DA EQUIPE\n");
+		printf("4 - SALVAR ARQUIVO\n");
 		
 		scanf("%d", &index);
 		cleanTerminal();
 	
 		switch(index){
 			case 1:
-				printf("Ler nome da equipe");
-				showMenu = false;
+				printf("1 - INSERIR NOME DA EQUIPE\n");
+				readName = true;
+				
+				while(readName && contName < 5){
+					
+					printf("\nInsira o nome da equipe %d ou 0 para finalizar:\n", contName + 1);
+					scanf(" %[^\n]", &name);
+					
+					if(strcmp(name, "0") == 0){
+						readName = false;
+					}else {
+						teams[contName];
+						contName ++;
+					}
+				}
+				
+				throwMessage("As 5 equipes já foram cadastradas");
+				cleanTerminal();
 				break;
 			case 2:
 				printf("Ler nota da equipe");
